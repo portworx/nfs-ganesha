@@ -836,6 +836,7 @@ static void nfs_Init(const nfs_start_info_t *p_start_info)
 	nfs_rpc_cbsim_pkginit();
 #endif				/*  _USE_CB_SIMULATOR */
 
+	tracker_init();
 }				/* nfs_Init */
 
 #ifdef USE_CAPS

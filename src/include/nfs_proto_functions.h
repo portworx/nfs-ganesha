@@ -509,4 +509,9 @@ bool pseudo_mount_export(struct gsh_export *exp);
 void create_pseudofs(void);
 void pseudo_unmount_export(struct gsh_export *exp);
 
+/* NFS Tracker */
+int tracker_init();
+int tracker_mount(const char *client, const char *mount_path);
+int tracker_unmount(const char *client, const char *mount_path);
+
 #endif	/* NFS_PROTO_FUNCTIONS_H */

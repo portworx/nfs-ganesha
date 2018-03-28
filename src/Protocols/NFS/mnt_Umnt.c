@@ -50,6 +50,9 @@ int mnt_Umnt(nfs_arg_t *arg, struct svc_req *req, nfs_res_t *res)
 	LogDebug(COMPONENT_NFSPROTO,
 		 "REQUEST PROCESSING: Calling MNT_UMNT path %s", arg->arg_mnt);
 
+	tracker_unmount((op_ctx->client ? op_ctx->client->hostaddr_str : ""),
+			arg->arg_mnt);
+
 	/* Ganesha does not support the mount list so this is a NOOP */
 
 	return NFS_REQ_OK;

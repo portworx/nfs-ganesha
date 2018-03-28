@@ -221,8 +221,12 @@ int mnt_Mnt(nfs_arg_t *arg, struct svc_req *req, nfs_res_t *res)
 		op_ctx->fsal_export = NULL;
 		put_gsh_export(export);
 	}
-	return retval;
+	if (res->res_mnt3.fhs_status == MNT3_OK) {
+		tracker_mount((op_ctx->client ? op_ctx->client->hostaddr_str: ""),
+				export_path(export));
+	}
 
+	return retval;
 }				/* mnt_Mnt */
 
 /**

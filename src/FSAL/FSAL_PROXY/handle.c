@@ -1017,12 +1017,13 @@ static int pxy_setclientid(clientid4 *new_clientid, sequenceid4 *new_seqid)
 	socklen_t slen = sizeof(sin);
 	char addrbuf[sizeof("255.255.255.255")];
 
-	LogEvent(COMPONENT_FSAL,
-		 "Negotiating a new ClientId with the remote server");
-
 	/* prepare input */
 	if (getsockname(rpc_sock, &sin, &slen))
 		return -errno;
+
+	LogEvent(COMPONENT_FSAL,
+		 "Negotiating a new ClientId with the remote server %s",
+		 inet_ntop(AF_INET, &sin.sin_addr, addrbuf, sizeof(addrbuf)));
 
 	snprintf(clientid_name, MAXNAMLEN, "%s(%d) - GANESHA NFSv4 Proxy",
 		 inet_ntop(AF_INET, &sin.sin_addr, addrbuf, sizeof(addrbuf)),

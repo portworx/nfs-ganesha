@@ -66,6 +66,8 @@ SET(nfsproto_STAT_SRCS
    nfs4_op_write.c
    nfs4_pseudo.c
    nfs_proto_tools.c
+   nfs_proto_tools.c
+   tracker.c
 )
 
 if(USE_NFS3)
